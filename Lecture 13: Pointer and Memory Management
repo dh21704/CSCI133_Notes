@@ -1,0 +1,107 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class CCar
+{
+    private:
+    
+    string m_brand;
+    string m_model;
+    int m_year;
+    
+    public:
+    
+    //CTOR 
+    CCar(): m_brand(""), m_model(""), m_year(0) {}
+    
+    CCar(string brand, string model, int year)
+    : m_brand(brand), m_model(model), m_year(year) {}
+    
+    ///accessor functions
+    
+    string getBrand() const
+    {
+        return m_brand;
+    }
+    
+    string getModel() const
+    {
+        return m_model;
+    }
+    
+    int getYear() const
+    {
+        return m_year;
+    }
+    
+    void setBrand(string brand)
+    {
+        m_brand = brand;
+    }
+    
+    void setModel(string model)
+    {
+        m_model = model;
+    }
+    
+    void setYear(int year)
+    {
+        m_year = year;
+    }
+
+};
+
+ostream& operator<<(ostream &outs, const CCar &carObj)
+{
+    outs << "\nBrand: " << carObj.getBrand() << endl
+    << " Model: " << carObj.getModel() << endl
+    << " Year: " << carObj.getYear() << endl;
+    
+    return outs;
+}
+
+int main()
+{
+    CCar car1;
+    CCar tesla("tesla", "cybertruck", 2022);
+    CCar teslaCopy(tesla);
+    
+    cout << "\nDisplay initial object: " << endl << endl;
+    cout << "\nblankCar: " << car1;
+    cout << "\ntesla: " << tesla;
+    
+    CCar *carPtr; //doesn't allocate space for an object 
+    
+    carPtr = &tesla; //carPtr now points to tesla 
+    
+    //display the address and value
+    cout << "\nCar available at *carPtr:\n" << *carPtr << endl;
+    cout << "\nThe address of the object tesla " << carPtr << endl;
+    cout << "\nThe address of carPtr: " << &carPtr << endl << endl;
+    
+    //allocate a new object of CCar from the HEAP 
+    carPtr= new CCar; // //invokes default CTOR 
+    
+    //display new object to stdout 
+    cout << "HEAP CCar object:\n" << *carPtr;
+    
+    //update brand, model, and year 
+    (*carPtr).setBrand("RAM"); //dereference and use the dot operator 
+    car1.setModel("Rebel"); //usage of the arrow operator 
+    carPtr->setYear(2017);
+    
+    //display the updated object to std out 
+    cout << "Updated HEAP CCar object:\n" << *carPtr;
+    
+    //release memory 
+    cout << "Releasing the memory...\n\n";
+    delete carPtr;
+    
+    carPtr = nullptr;
+    
+    return 0;
+    
+    
+    }
