@@ -1,0 +1,35 @@
+
+#include <iostream>
+using namespace std;
+
+const int MAX = 3;
+
+int main()
+{
+    int var[MAX] = {10, 100, 200};
+    int *ptr;
+    int *lastPtr;
+    
+    //let us have address of the first element in the pointer
+    ptr = var;
+    
+    //address of the last element in pointer
+    lastPtr= &var[MAX - 1];
+    
+    int i = 0;
+    
+    while (ptr <= lastPtr)
+    {
+        cout << "Address of var[" << i << "] = ";
+        cout << ptr << endl;
+        
+        cout << "\nValue of var[" << i << "] = ";
+        cout << *ptr << endl;
+        
+        //point to the previous location
+        ptr++;
+        i++;
+    }
+
+    return 0;
+}
