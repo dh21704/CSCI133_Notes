@@ -1,0 +1,25 @@
+
+#include <iostream>
+using namespace std;
+
+int MAX = 3;
+
+int main()
+{
+    int var[MAX] = {10, 100, 200};
+    int *ptr;
+    
+    //let us have address of the last element in pointer 
+    // as it has the highest address
+    ptr = &var[MAX-1];
+    
+    for (int i = MAX; i > 0; i--)
+    {
+        cout << "\nAddress of var ["<< i << "] = " << ptr;
+        cout << "\nValue of var [" << i << "] = " << *ptr << endl;
+        
+        ptr--;
+    }
+
+    return 0;
+}
