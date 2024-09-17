@@ -1,0 +1,47 @@
+
+#include <iostream>
+using namespace std;
+
+void DeletePointer(int **pptr);
+
+int main()
+{
+    int *ptr = new int(3); //allocate space for an int in the HEAP and initialize it to 3 
+    
+    //display address and value 
+    cout << "\nValue available at *ptr: " << *ptr << endl;
+    cout << "\nThe HEAP address: " << ptr << endl;
+    cout << "The address of ptr: " << &ptr << endl << endl;
+    
+    DeletePointer(&ptr);
+    
+    if (ptr == nullptr)
+    {
+        cout << "ptr == nullptr\n\n\n";
+    }
+    else
+    {
+        cout << "ptr != nullptr\n\n";
+    }
+    
+    //allocate a new int in the heap and initialize it to 5 
+    ptr = new int(5);
+    
+    //display address and values 
+    cout << "Value available at *ptr: " << *ptr << endl;
+    cout << "The HEAP address: " << ptr << endl;
+    cout << "The address of ptr: " << &ptr << endl << endl;
+    
+    DeletePointer(&ptr);
+
+    return 0;
+}
+
+void DeletePointer(int **pptr)
+{
+    //release the memroy that pptr points to. In other words release what ptr points to 
+    
+    delete *pptr;
+    
+    *pptr = nullptr;
+}
