@@ -1,0 +1,41 @@
+
+#include <iostream>
+using namespace std;
+
+void Increase(void *data, int pSize);
+
+int main()
+{
+    int myChar = 'x';
+    int myInt = 3;
+    
+    cout << "\nBefore calling Increase...\n";
+    cout << myChar << ", " << myInt << endl;
+    
+    Increase(&myChar, sizeof(myChar));
+    Increase(&myInt, sizeof(myInt));
+    
+    cout << "\nAfter calling Increase...\n";
+    cout << myChar << ", " << myInt << endl;
+    
+
+    return 0;
+}
+
+void Increase(void *data, int pSize)
+{
+    if (pSize == sizeof(char))
+    {
+        char* pChar;
+        
+        pChar = (char*)data;
+        ++(*pChar);
+    }
+    else if (pSize == sizeof(int))
+    {
+        int * pInt;
+        
+        pInt = (int*)data;
+        ++(*pInt);
+    }
+}//end of increase
