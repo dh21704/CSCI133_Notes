@@ -1,0 +1,42 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+
+struct Node
+{
+    string value;
+    Node *next;
+};
+
+int main()
+{
+    Node *head;
+    Node *first;
+    Node *second;
+    Node *third;
+    
+    first = new Node;
+    second = new Node;
+    third = new Node;
+    
+    head = first;
+    
+    first->value = "Apple";
+    first->next = second;
+    
+    //set up second Node
+    second->value = "Takis";
+    second->next = third;
+    
+    third->value = "Toilet Paper";
+    third->next = nullptr;
+    
+    delete first;
+    delete second;
+    delete third;
+
+    return 0;
+}
