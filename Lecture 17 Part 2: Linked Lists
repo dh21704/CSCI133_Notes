@@ -1,0 +1,167 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Node
+{
+    string value;
+    Node *next;
+};
+
+class LinkedList
+{
+   public:
+   LinkedList();
+    ~LinkedList();
+    void AddToFront(string v);
+    void AddToRear(string v);
+    void AddToMiddle(string v);
+    void DeleteItem(string v);
+    bool FindItem(string v);
+    void PrintItems();
+    
+    private:
+    Node *head;
+};
+
+LinkedList::LinkedList()
+{
+    head = nullptr;
+}
+
+void LinkedList::PrintItems()
+{
+    Node *p = head;
+    
+    while (p != nullptr)
+    {
+        cout << p->value << endl;
+        
+        p = p->next;
+    }
+}
+
+void LinkedList::AddToFront(string v)
+{
+    //create a new node
+    Node *n = new Node;
+    
+    //add the value of v in the new node
+    n->value = v;
+    
+    //have the new node point to the current first node
+    n->next = head;
+    
+    //update the head pointer
+    head = n;
+}
+
+void LinkedList::AddToRear(string v)
+{
+    if (head == nullptr)
+    {
+        AddToFront(v);
+    }
+    else
+    {
+        Node *p = head;
+        
+        while (p->next != nullptr)
+        {
+            p = p->next;
+        }
+        
+        Node *n = new Node;
+        
+        n->value = v;
+        
+        p->next = n;
+        
+        n->next = nullptr;
+        
+    }
+    
+}
+
+// void LinkedList::AddToMiddle(string v)
+// {
+//     Node *p = head;
+    
+//     while (p->next != nullptr)
+//     {
+//         //if (<boolean statement> )
+//         // {
+//         //     break;
+//         // }
+        
+//         p = p->next;
+//     }
+    
+//     //creat a new node
+//     Node *n = new Node;
+    
+//     //add the value of v in the new node
+//     n->value = v;
+    
+//     //have the new node point to p's next node
+//     n->next = p->next;
+    
+//     //have the p's node point to the new node
+//     p->next = n;
+// }
+
+
+// void LinkedList::AddItem(string newItem)
+// {
+//     if (head == nullptr)
+//     {
+//         AddToFront(newItem);
+//     }
+//     else if (//decide if the new item belongs at the top)
+//     {
+//         AddToFront();
+//     }
+//     else 
+//     {
+//         Node *p = head;
+        
+//         while (p->next != nullptr)
+//         {
+//             if (<boolean statemetns> )
+//             {
+//                 break;
+//             }
+            
+//             p = p->next;
+//         }
+        
+//         //create a new node
+//         Node *n = new Node;
+        
+//         //add the value of newItem in the new node
+//         n->value = newItem;
+        
+//         //have the new node point to p's next node
+//         n->next = p->next; 
+        
+//         //have p's node point to new node 
+//         p->next = n;
+//     }
+// }
+
+
+int main()
+{
+    std::cout<<"Hello World";
+
+    return 0;
+}
