@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Node {
+    string value;
+    Node *next;
+};
+
+class LinkedList {
+private:
+    Node *head;
+    Node *tail;
+
+public:
+    LinkedList();
+    ~LinkedList();
+    void AddToFront(string v);
+    void AddToRear(string v);
+};
+
+LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
+
+LinkedList::~LinkedList() {
+    Node *current = head;
+    while (current != nullptr) {
+        Node *nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+}
+
+void LinkedList::AddToFront(string v) {
+    Node *n = new Node;
+    n->value = v;
+    n->next = head;
+    head = n;
+    if (tail == nullptr) { // If the list was empty, set tail to the new node.
+        tail = n;
+    }
+}
+
+void LinkedList::AddToRear(string v) {
+    if (head == nullptr) {
+        AddToFront(v);
+    } else {
+        Node *n = new Node;
+        n->value = v;
+        n->next = nullptr;
+        tail->next = n;
+        tail = n;
+    }
+}
+
+int main() {
+    LinkedList list;
+    list.AddToRear("Hello");
+    list.AddToRear("World");
+
+    return 0;
+}
